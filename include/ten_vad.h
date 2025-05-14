@@ -39,7 +39,8 @@ extern "C"
    * @param[in]  hop_size     The number of samples between the start points of
    * two consecutive analysis frames. (e.g., 256).
    * @param[in]  threshold    VAD detection threshold ranging from [0.0, 1.0]
-   * (default: 0.5).
+   * This threshold is used to determine voice activity by comparing with the output probability.
+   * When probability >= threshold, voice is detected.
    * @return 0 on success, or -1 error occurs.
    */
   TENVAD_API int ten_vad_create(ten_vad_handle_t *handle, size_t hop_size,
@@ -54,9 +55,10 @@ extern "C"
    * buffer length must equal the hop size specified at ten_vad_create.
    * @param[in]  audio_data_length  size of audio_data buffer, here should be equal to hop_size.
    * @param[out] out_probability  Pointer to a float (size 1) that receives the
-   * voice activity probability in the range [0.0, 1.0].
+   * voice activity probability in the range [0.0, 1.0], where higher values indicate higher confidence in voice presence.
    * @param[out] out_flag         Pointer to an int (size 1) that receives the
-   * detection result: 0 = no voice, 1 = voice detected.
+   * binary voice activity decision: 0: no voice, 1: voice detected.
+   * This flag is set to 1 when out_probability >= threshold, and 0 otherwise.
    * @return 0 on success, or -1 error occurs.
    */
   TENVAD_API int ten_vad_process(ten_vad_handle_t handle, const int16_t *audio_data, size_t audio_data_length,
