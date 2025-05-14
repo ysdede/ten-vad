@@ -190,13 +190,13 @@ Note: You could use other versions of above packages, but we didn't test other v
 
 <br>
 
-The **lib** only depend on numpy, you can install the dependency via requirements.txt:
+The **lib** only depend on numpy, you have to install the dependency via requirements.txt:
 
 ```pip install -r requirements.txt```
 
 
 
-For **running demo or plotting PR curves**, you should install the dependencies:
+For **running demo or plotting PR curves**, you have to install the dependencies:
 
 ```pip install -r ./examples/requirements.txt```
 
