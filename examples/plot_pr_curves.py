@@ -124,9 +124,10 @@ if __name__ == "__main__":
     label_hop_512_all, vad_result_silero_vad_all = np.array([]), np.array([])
     wav_list = glob.glob(f"{test_dir}/*.wav")
 
-    # Running TEN VAD
+    # The WebRTC VAD is from the latest version of WebRTC and is not plotted here
     print("Start processing")
     for wav_path in wav_list:
+        # Running TEN VAD
         ten_vad_instance = TenVad(hop_size, threshold)
         label_file = wav_path.replace(".wav", ".scv")
         label = convert_label_to_framewise(
@@ -142,13 +143,14 @@ if __name__ == "__main__":
         label_all = np.append(label_all, label[:frame_num - 1])
         del ten_vad_instance  # To prevent getting different results of each run
 
+        # Running Silero VAD
         label_hop_512 = convert_label_to_framewise(
             label_file, hop_size=512
         )  # Convert the VAD label to frame-wise one for Silero VAD
         vad_result_silero_vad, _ = silero_vad_inference_single_file(wav_path)
         frame_num_silero_vad = min(label_hop_512.__len__(), vad_result_silero_vad.__len__())
         vad_result_silero_vad_all = np.append(vad_result_silero_vad_all, vad_result_silero_vad[:frame_num_silero_vad])
-        label_hop_512_all = np.append(label_hop_512_all, label_hop_512[:frame_num_silero_vad]) 
+        label_hop_512_all = np.append(label_hop_512_all, label_hop_512[:frame_num_silero_vad])
 
     # Compute Precision and Recall  
     threshold_arr = np.arange(0, 1.01, 0.01)
