@@ -13,12 +13,12 @@
 
 ### **1. High-Performance:** 
 
-The precision-recall curves comparing the performance of WebRTC VAD (pitch-based), Silero VAD, and TEN VAD are shown below. The evaluation is conducted on the precisely manually annotated TEN-VAD-TestSet. The audio files are from librispeech, gigaspeech, DNS Challenge etc. As demonstrated, TEN VAD achieves the best performance. Additionally, cross-validation experiments conducted on large internal real-world datasets demonstrate the reproducibility of these findings. The **TEN-VAD-TestSet with annotated labels** is released in directory "TEN-VAD-TestSet" of this repository.
+The precision-recall curves comparing the performance of WebRTC VAD (pitch-based), Silero VAD, and TEN VAD are shown below. The evaluation is conducted on the precisely manually annotated testset. The audio files are from librispeech, gigaspeech, DNS Challenge etc. As demonstrated, TEN VAD achieves the best performance. Additionally, cross-validation experiments conducted on large internal real-world datasets demonstrate the reproducibility of these findings. The **testset with annotated labels** is released in directory "testset" of this repository.
 
  <br>
 
 <div style="text-align:">
-  <img src="./examples/images/PR_Curves_TEN-VAD-TestSet.png" width="800">
+  <img src="./examples/images/PR_Curves_testset.png" width="800">
 </div>
 
 Note that the default threshold of 0.5 is used to generate binary speech indicators (0 for non-speech signal, 1 for speech signal). This threshold needs to be tuned according to your domain-specific task. The precision-recall curve can be obtained by executing the following script on Linux x64. The output figure will be saved in the same directory as the script.

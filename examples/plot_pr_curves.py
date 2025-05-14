@@ -115,7 +115,7 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
     # TEN-VAD-TestSet dir
-    test_dir = f"{script_dir}/../TEN-VAD-TestSet"
+    test_dir = f"{script_dir}/../testset"
 
     # Initialization
     hop_size = 256
