@@ -21,6 +21,6 @@ if __name__ == "__main__":
     with open(out_path, "w") as f:
         for i in range(num_frames):
             audio_data = data[i * hop_size: (i + 1) * hop_size]
-            out_probability, out_flags = ten_vad_instance.process(audio_data)
-            print("[%d] %0.6f, %d" % (i, out_probability, out_flags))
-            f.write("[%d] %0.6f, %d\n" % (i, out_probability, out_flags))
+            out_probability, out_flag = ten_vad_instance.process(audio_data) #  Out_flag is speech indicator (0 for non-speech signal, 1 for speech signal)
+            print("[%d] %0.6f, %d" % (i, out_probability, out_flag))
+            f.write("[%d] %0.6f, %d\n" % (i, out_probability, out_flag))
