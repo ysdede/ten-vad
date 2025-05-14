@@ -188,12 +188,20 @@ The project supports five major platforms with dynamic library linking.
 
 Note: You could use other versions of above packages, but we didn't test other versions. 
 
-You can install the above mentioned dependencies via requirements.txt:
-
-```
-pip install -r requirements.txt
-```
 <br>
+
+The **lib** only depend on numpy, you can install the dependency via requirements.txt:
+
+```pip install -r requirements.txt```
+
+
+
+For **running demo or plotting PR curves**, you should install the dependencies:
+
+```pip install -r ./examples/requirements.txt```
+
+<br>
+
 
 #### **Usage**
 Note: For usage in python, you can either use it by **git clone** or **pip**.
