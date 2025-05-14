@@ -21,7 +21,7 @@ The precision-recall curves comparing the performance of WebRTC VAD (pitch-based
   <img src="./examples/images/PR_Curves_TEN-VAD-TestSet.png" width="800">
 </div>
 
-Note that the default threshold of 0.5 is used to generate binary speech indicators (0 for non-speech signal, 1 for speech signal). This threshold needs to be tuned according to your domain-specific task. The precision-recall curve can be obtained by executing the following script on Linux x64. The output figure will be saved in the same directory as the script. Note that only PR curves of Silero VAD and TEN VAD are plotted, we did not plot the one of WebRTC VAD, which is used in the latese version of WebRTC.
+Note that the default threshold of 0.5 is used to generate binary speech indicators (0 for non-speech signal, 1 for speech signal). This threshold needs to be tuned according to your domain-specific task. The precision-recall curve can be obtained by executing the following script on Linux x64. The output figure will be saved in the same directory as the script.
 
 ```
 cd ./examples
