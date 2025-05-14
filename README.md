@@ -385,7 +385,7 @@ cd ./examples
   journal = {GitHub repository},
   howpublished = {https://github.com/TEN-framework/ten-vad.git},
   commit = {insert_some_commit_here},
-  email = {TODO}
+  email = {developer@ten.ai}
 }
 ```
 <br>
