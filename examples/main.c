@@ -137,7 +137,7 @@ int test_with_wav(int argc, char *argv[])
   uint32_t frame_num = sample_num / hop_size;
   printf("Audio frame Num: %d\n", frame_num);
   float *out_probs = (float *)malloc(frame_num * sizeof(float));
-  int32_t *out_flags = (int32_t *)malloc(frame_num * sizeof(int32_t));
+  int32_t *out_flags = (int32_t *)malloc(frame_num * sizeof(int32_t));  // Output flags are binary speech indicators (0 for non-speech signal, 1 for speech signal)
   float use_time = .0;
   vad_process((int16_t *)input_buf, frame_num,
                out_probs, out_flags,
