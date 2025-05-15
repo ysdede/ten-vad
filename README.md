@@ -243,7 +243,7 @@ The project supports five major platforms with dynamic library linking.
 #### **1. Linux**
 #### **Requirements**
 - numpy (Version 1.17.4/1.26.4 verified)
-- scipy (Version 1.13.1 verified)
+- scipy (Version >= 1.5.0)
 - scikit-learn (Version 1.2.2/1.5.0 verified, for plotting PR curves)
 - matplotlib (Version 3.1.3/3.10.0 verified, for plotting PR curves)
 - torchaudio (Version 2.2.2 verified, for plotting PR curves)
