@@ -13,6 +13,33 @@
 
 <br>
 
+
+## Table of Contents
+
+- [Welcome to TEN](#welcome-to-ten)
+- [Introduction](#introduction)
+- [Key Features](#key-features)
+  - [High-Performance](#1-high-performance)
+  - [Agent-Friendly](#2-agent-friendly)
+  - [Lightweight](#3-lightweight)
+  - [Multiple Programming Languages and Platforms](#4-multiple-programming-languages-and-platforms)
+  - [Supported Sampling Rate and Hop Size](#5-supproted-sampling-rate-and-hop-size)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+  - [Python Usage](#python-usage)
+    - [Linux](#1-linux)
+  - [C Usage](#c-usage)
+    - [Linux](#1-linux-1)
+    - [Windows](#2-windows)
+    - [macOS](#3-macos)
+    - [Android](#4-android)
+    - [iOS](#5-ios)
+- [TEN Ecosystem](#ten-ecosystem)
+- [Citations](#citations)
+- [License](#license)
+
+<br>
+
 ## Welcome to TEN 
 
 TEN is a collection of open-source projects for building real-time, multimodal conversational voice agents, including [ TEN Framework ](https://github.com/ten-framework/ten-framework), [ TEN VAD ](https://github.com/ten-framewrok/ten-vad), [ TEN Turn Detection ](https://github.com/ten-framework/ten-turn-detection), TEN Agent, TMAN Designer, [ TEN Portal ](https://github.com/ten-framework/portal), and more.
