@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ten_vad"
+version = "1.0.1"
+description = "Voice Activity Detection (VAD) library with Python and C interfaces."
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "TEN Framework Contributors", email = "example@example.com"}
+]
+keywords = ["vad", "voice activity detection", "speech processing"]
+dependencies = [
+    "numpy>=1.20",
+]
+
+[project.urls]
+Homepage = "https://github.com/TEN-framework/ten-vad"
+Repository = "https://github.com/TEN-framework/ten-vad"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["ten_vad"] 

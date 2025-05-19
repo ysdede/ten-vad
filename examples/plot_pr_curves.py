@@ -8,12 +8,45 @@ import numpy as np
 import scipy.io.wavfile as Wavfile
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
+import git # For cloning the repository
 
-os.system('git clone https://github.com/snakers4/silero-vad.git')  # Clone the silero-vad repo, using Silero V5
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "./silero-vad/src")))
+# Path for the silero-vad repository
+current_directory = os.path.dirname(os.path.abspath(__file__))
+silero_repo_path = os.path.join(current_directory, "silero-vad")
+silero_repo_url = "https://github.com/snakers4/silero-vad.git"
+
+# Check if the repository directory already exists and clone if not
+if not os.path.isdir(silero_repo_path):
+    print(f"Cloning Silero VAD from {silero_repo_url} into {silero_repo_path}...")
+    try:
+        git.Repo.clone_from(silero_repo_url, silero_repo_path)
+        print("Cloning complete.")
+    except git.GitCommandError as e:
+        print(f"Error cloning repository: {e}")
+        print("Please ensure Git is installed and accessible, or clone the repository manually.")
+        sys.exit(1)
+    except Exception as e: # Catch other potential errors like git not being installed
+        print(f"An unexpected error occurred during git clone: {e}")
+        print("Please ensure Git is installed and accessible, or clone the repository manually.")
+        sys.exit(1)
+else:
+    print(f"Silero VAD repository already exists at {silero_repo_path}.")
+    # Optional: Pull latest changes if the repo already exists
+    # try:
+    #     print(f"Attempting to pull latest changes for {silero_repo_path}...")
+    #     repo = git.Repo(silero_repo_path)
+    #     origin = repo.remotes.origin
+    #     origin.pull()
+    #     print("Pull complete.")
+    # except git.GitCommandError as e:
+    #     print(f"Error pulling repository: {e}")
+    # except Exception as e:
+    #     print(f"An unexpected error occurred while trying to pull: {e}")
+
+sys.path.append(os.path.abspath(os.path.join(silero_repo_path, "src"))) # Use the defined path
 from silero_vad.utils_vad import VADIterator, init_jit_model
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../include")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 from ten_vad import TenVad
 
 def convert_label_to_framewise(label_file, hop_size):
@@ -124,24 +157,29 @@ if __name__ == "__main__":
     label_hop_512_all, vad_result_silero_vad_all = np.array([]), np.array([])
     wav_list = glob.glob(f"{test_dir}/*.wav")
 
+    # Create ONE TenVad instance before the loop
+    print("Initializing TEN VAD...")
+    ten_vad_master_instance = TenVad(hop_size, threshold)
+    print("TEN VAD initialized.")
+
     # The WebRTC VAD is from the latest version of WebRTC and is not plotted here
     print("Start processing")
     for wav_path in wav_list:
         # Running TEN VAD
-        ten_vad_instance = TenVad(hop_size, threshold)
+        # Use the master instance. The threshold is constant for this script.
         label_file = wav_path.replace(".wav", ".scv")
         label = convert_label_to_framewise(
             label_file, hop_size=hop_size
         )  # Convert the VAD label to frame-wise one
         vad_result_ten_vad = ten_vad_process_wav(
-            ten_vad_instance, wav_path, hop_size=hop_size
+            ten_vad_master_instance, wav_path, hop_size=hop_size # Use the single instance
         )
         frame_num = min(label.__len__(), vad_result_ten_vad.__len__())
         vad_result_ten_vad_all = np.append(
             vad_result_ten_vad_all, vad_result_ten_vad[1:frame_num]
         )
         label_all = np.append(label_all, label[:frame_num - 1])
-        del ten_vad_instance  # To prevent getting different results of each run
+        # No del ten_vad_instance needed here anymore
 
         # Running Silero VAD
         label_hop_512 = convert_label_to_framewise(
